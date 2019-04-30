@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Navbar, Nav, Form, Button } from "reactstrap";
 
 export class NavComponent extends React.PureComponent<any> {
     render() {
@@ -31,17 +30,4 @@ export class NavComponent extends React.PureComponent<any> {
             </nav>
         );
     }
-
-//     render () {
-//         return (
-//         <Navbar bg="dark" variant="dark">
-//     <Link to="/home" className="unset-anchor"> Add logo</Link>
-//     <Nav className="mr-auto">
-//       <Link to = "#home">Home</Link>
-//       <Link to = "#features">Features</Link>
-//       <Link to = "#pricing">Pricing</Link>
-//     </Nav>
-//   </Navbar>
-//         );
-// }
 }

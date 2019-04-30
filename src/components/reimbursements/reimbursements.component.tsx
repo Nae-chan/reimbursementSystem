@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-export class HomeComponent extends React.Component {
+export class ReimbursementComponent extends React.Component {
     render() {
         return (
             <div>
