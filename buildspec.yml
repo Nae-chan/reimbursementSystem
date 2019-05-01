@@ -3,11 +3,11 @@ phases:
   install: 
     commands:
       - echo Installing source NPM dependencies...
-      - cd week4/spaceship-app-redux && npm install
+      - npm install
   build:
     commands:
       - echo Build started on `date`
-      - cd week4/spaceship-app-redux && npm run build
+      - npm run build
   post_build:
     commands:
       - echo "$CODEBUILD_BUILD_SUCCEEDING"
