@@ -4,7 +4,7 @@ const dev = {
   };
 // Set the server host
   const prod = {
-    context: 'http://ec2-url:8081'
+    context: 'http://ec2-3-17-131-206.us-east-2.compute.amazonaws.com:8081'
   };
   
 // Set the enviroment to the host

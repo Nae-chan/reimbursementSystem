@@ -5,7 +5,7 @@ import { authTypes } from "../actions/authentication.action";
 
 const initialState: IAuthState = {
   currentUser: undefined,
-  errorMessage: undefined
+  errorMessage: 'idk'
 }
 
 export const authReducer = (state = initialState, action) => {

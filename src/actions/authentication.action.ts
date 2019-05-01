@@ -9,7 +9,7 @@ export const authTypes = {
 // Get loggin info from server
 export const login = (username: string, password: string, history: any) => async(dispatch) => {
   try {
-    const resp = await fetch(environment.context + '/users/login', {
+    const resp = await fetch(environment.context + '/login', {
       method: 'POST',
       credentials: 'include',
       body: JSON.stringify({username, password}),
