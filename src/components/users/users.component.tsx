@@ -1,32 +1,100 @@
 import React from "react";
-import { Users } from "../../models/user";
+import { UserTableComponent } from "./table.user.component";
+import { IModifyUserState, IState } from "../../reducers";
+import { connect } from "react-redux";
+import { getUserById, getUsers, modifyUser } from "../../actions/user.action";
+import { User } from "../../models/user";
+import { RouteComponentProps } from "react-router";
 
-interface IUserProps {
-    user: Users;
+/**
+ * This components updates the state of a User displayed in the userCardComponent
+ *  */
+
+interface IIdState {
+  id: number;
+}
+//Take in User state
+interface IUserTableProps extends RouteComponentProps<{}>{
+  id: number
+  selectedUser: IModifyUserState
+  getUsers: () => any
+  getUserById: (id: number) => any
+  clickUser: (editable: boolean, selectedUser: User, history: any) => any
+}
+
+export class UserComponent extends React.Component<IUserTableProps, IIdState> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      id: 0
+    };
   }
-  
-  export class UserCardComponent extends React.PureComponent<IUserProps> {
-    render() {
-      const user = this.props.user;
+
+  //send action to get all users
+  componentDidMount = () => {
+    this.props.getUsers();
+  };
+
+  setId = (event) => {
+    this.setState({
+      id: event.target.value
+    });
+  }
+
+  render() {
+    let id = this.state.id;
+    if (this.props.selectedUser === undefined) {
       return (
-        <div className="card col-md-4 col-sm-6 col-xs-12">
-          <img src="https://thenewswheel.com/wp-content/uploads/2018/05/Millennium-Falcon-760x428.jpg"
-            className="card-img-top"
-            alt="..." />
-          <div className="card-body">
-            <h5 className="card-title">{user.name}</h5>
-          </div>
-          <ul className="list-group list-group-flush">
-            <li className="list-group-item">UserId: {user.userId }</li>
-            <li className="list-group-item">username: {user.username}</li>
-            <li className="list-group-item">password: {user.password}</li>
-            <li className="list-group-item">name: {user.name}</li>
-            <li className="list-group-item">role: {user.role}</li>
-            <li className="list-group-item">
-              <button className="btn btn-danger">Delete</button>
-            </li>
-          </ul>
+        <div> className="error"
+        Error! redirecting to home page...
         </div>
       )
+    } else {
+      return (
+        <div className="container">
+          <div>
+            <form className="form-inline">
+              <label htmlFor="inputUserId" className="sr-only">UserId</label>
+              <input type="number" id="inputUserId" name="userId"
+                className="col-xs-2" placeholder="User ID" onChange={(e) => this.setId(e)} />
+              <button type="submit" className="btn btn-success" onSubmit={() => this.props.getUserById(id)} >Search</button>
+            </form>
+            <button className="btn btn-success" onClick={() => this.props.clickUser}>New User</button>
+          </div>
+          <table className="table table-hover">
+            <thead>
+              <tr>
+                <th className="table" scope="col">UserId</th>
+                <th className="table" scope="col">Username</th>
+                <th className="table" scope="col">First Name</th>
+                <th className="table" scope="col">Last Name</th>
+                <th className="table" scope="col">Email</th>
+                <th className="table" scope="col">Role</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.props.selectedUser.listUsers && this.props.selectedUser.listUsers.map(currentUser => (
+                <UserTableComponent key={'user-' + currentUser.userId} listUsers={currentUser} />
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
     }
   }
+
+}
+const mapStateToProps = (state: IState) => {
+  return {
+    selectedUser: state.selectedUser,
+
+  }
+}
+
+const mapDispatchToProps = {
+  getUsers: getUsers,
+  getUserById: getUserById,
+  clickUser: modifyUser
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserComponent);

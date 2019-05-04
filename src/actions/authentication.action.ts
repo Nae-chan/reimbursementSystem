@@ -19,7 +19,7 @@ export const login = (username: string, password: string, history: any) => async
     })
     console.log(resp);
 
-    if (resp.status === 401) {
+    if (resp.status === 400) {
       dispatch({
         type: authTypes.INVALID_CREDENTIALS
       })
@@ -32,7 +32,7 @@ export const login = (username: string, password: string, history: any) => async
         },
         type: authTypes.LOGGED_IN
       })
-      history.push('/loggedIn');
+      history.push('/home');
     } else {
       dispatch({
         type: authTypes.FAILED_TO_LOGIN

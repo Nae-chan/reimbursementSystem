@@ -2,10 +2,9 @@ import { IAuthState } from ".";
 import { authTypes } from "../actions/authentication.action";
 
 
-
 const initialState: IAuthState = {
   currentUser: undefined,
-  errorMessage: 'idk'
+  errorMessage: undefined
 }
 
 export const authReducer = (state = initialState, action) => {
@@ -23,7 +22,8 @@ export const authReducer = (state = initialState, action) => {
     case authTypes.LOGGED_IN:
       return {
         ...state,
-        currentUser: action.payload.user
+        currentUser: action.payload.user,
+        errorMessage: undefined
       }
     default:
 

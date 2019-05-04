@@ -7,7 +7,7 @@ export class NavComponent extends React.PureComponent<any> {
             <nav className="navbar navbar-toggleable-md navbar-expand-lg navbar-light bg-light display-front nav-pad">
                 <div className="navbar-header c-pointer shift-left">
                     <Link to="/home" className="unset-anchor">
-                        Add logo
+                        SECRET
                     </Link>
                 </div>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04"

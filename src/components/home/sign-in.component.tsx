@@ -48,7 +48,7 @@ export class SignInComponent extends React.Component<ISignInProps, ISignInState>
         const errorMessage = this.props.auth.errorMessage;
         return (
           <form className="form-signin" onSubmit={this.submit}>
-            <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
+            <h1 className="h3 mb-3 font-weight-normal">Please Sign In</h1>
             <label htmlFor="inputUsername" className="sr-only">Username</label>
             <input type="text" id="inputUsername" name="username"
               className="form-control" placeholder="Username"
