@@ -35,6 +35,11 @@ export const userReducer = (state = initialState, action) => {
                 ...state,
                 listUsers: action.payload.listUsers
             }
+        case userTypes.GET_USER_BY_ID:
+            return {
+                ...state,
+                listUsers: action.payload.listUsers
+            }
         default:
             break
     }

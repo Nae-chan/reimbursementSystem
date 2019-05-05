@@ -7,7 +7,7 @@ export const userTypes = {
   VIEW_ONLY: 'VIEW_ONLY',
   BLANK_USER: 'BLANK_USER',
   GET_ALL_USERS: 'GET_ALL_USERS',
-  GET_USER_BY_ID: 'ET_USER_BY_ID',
+  GET_USER_BY_ID: 'GET_USER_BY_ID',
   TEST: 'TEST'
 }
 //View, edit, or new User
@@ -67,7 +67,7 @@ export const getUserById = (id: number) => async (dispatch) => {
     const body = await resp.json();
     dispatch({
       payload: {
-        user: body
+        listUsers: body
       }, type: userTypes.GET_USER_BY_ID
     })
   } catch (err) {

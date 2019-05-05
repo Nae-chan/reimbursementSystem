@@ -14,7 +14,7 @@ interface IIdState {
   id: number;
 }
 //Take in User state
-interface IUserTableProps extends RouteComponentProps<{}>{
+interface IUserTableProps extends RouteComponentProps<{}> {
   id: number
   selectedUser: IModifyUserState
   getUsers: () => any
@@ -53,12 +53,10 @@ export class UserComponent extends React.Component<IUserTableProps, IIdState> {
       return (
         <div className="container">
           <div>
-            <form className="form-inline">
-              <label htmlFor="inputUserId" className="sr-only">UserId</label>
-              <input type="number" id="inputUserId" name="userId"
-                className="col-xs-2" placeholder="User ID" onChange={(e) => this.setId(e)} />
-              <button type="submit" className="btn btn-success" onSubmit={() => this.props.getUserById(id)} >Search</button>
-            </form>
+            <label htmlFor="inputUserId" className="sr-only">UserId</label>
+            <input type="number" id="inputUserId" name="userId"
+              className="col-xs-2" placeholder="User ID" onChange={(e) => this.setId(e)} />
+            <button type="submit" className="btn btn-success" onClick={() => this.props.getUserById(id)} >Search</button>
             <button className="btn btn-success" onClick={() => this.props.clickUser}>New User</button>
           </div>
           <table className="table table-hover">

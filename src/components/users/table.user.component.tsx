@@ -9,9 +9,7 @@ import { RouteComponentProps } from "react-router";
  * This container components holds the table for all users
  * */
 //Take in User props
-function click_user() {
 
-}
 // THIS NEEDS TO EXTEND RouteComponentProps<{}> for history to work
 interface IUserCardProps  {
     listUsers: User;
