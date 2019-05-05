@@ -25,6 +25,12 @@ export class NavComponent extends React.PureComponent<any> {
                         <li className="nav-item active">
                             <Link to="/users" className="unset-anchor nav-link">Users</Link>
                         </li>
+                        <li className="nav-item active">
+                            <Link to="/update" className="unset-anchor nav-link">Update User</Link>
+                        </li>
+                        <li className="nav-item active">
+                            <Link to="/reimbursements" className="unset-anchor nav-link">Reimbursements</Link>
+                            </li>
                     </ul>
                 </div>
             </nav>

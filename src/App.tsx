@@ -9,7 +9,7 @@ import { HomeComponent } from './components/home/home.component';
 import SignInComponent from './components/home/sign-in.component';
 import { ReimbursementComponent } from './components/reimbursements/reimbursements.component';
 import  UserComponent  from './components/users/users.component';
-import { UpdateUserComponent } from './components/users/update.user.component';
+import UpdateUserComponent from './components/users/update.user.component';
 
 
 const App: React.FC = () => {

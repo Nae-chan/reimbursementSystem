@@ -1,5 +1,4 @@
 import React from 'react';
-import { User } from '../../models/user';
 import { EditCardComponent } from './edit.card.user.component';
 import { IModifyUserState, IState } from '../../reducers';
 import { connect } from 'react-redux';
@@ -11,19 +10,17 @@ import { connect } from 'react-redux';
 //Take in User state
 interface IModifyUserProps {
     selectedUser: IModifyUserState
-    user: User[]
 }
 
 export class UpdateUserComponent extends React.Component<IModifyUserProps>{
 
+    user = this.props.selectedUser.listUsers && this.props.selectedUser.listUsers
     render() {
         return (
             //ASK ABOUT ALSO BRINGING IN TITLE!!
             <div className="container">
-                {this.props.user.map((updateUser) => (
-                    <EditCardComponent key={'user-' + updateUser.userId} selectedUser={updateUser} />
-                )
-                )}
+                <EditCardComponent
+                 selectedUser = {this.props.selectedUser} />
             </div>
         );
     }

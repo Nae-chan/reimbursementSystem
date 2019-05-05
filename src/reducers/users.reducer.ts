@@ -21,7 +21,7 @@ export const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 selectedUser: action.payload.selectedUser,
-                title: 'My Account'
+                title: 'User Information'
             }
         case userTypes.EDIT_USER:
             return {
