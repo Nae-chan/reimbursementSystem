@@ -14,7 +14,7 @@ interface IIdState {
   id: number;
 }
 //Take in User state
-interface IUserTableProps extends RouteComponentProps<{}> {
+interface IUserTableProps extends RouteComponentProps<{}>{
   id: number
   selectedUser: IModifyUserState
   getUsers: () => any
