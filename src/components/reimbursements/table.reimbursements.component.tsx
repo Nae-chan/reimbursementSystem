@@ -1,14 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
-import { IState, IReimbursementState } from "../../reducers";
-import { RouteComponentProps } from "react-router";
+import { IState} from "../../reducers";
+import { RouteComponentProps, withRouter } from "react-router";
+import { Reimbursement } from "../../models/reimbursement";
 
 /**
  * This container components holds the table for all reimbursements
  * */
 //take in props
 interface IReimbursementProps extends RouteComponentProps<{}>{
-    reimb: IReimbursementState;
+    reimb: any;
 }
 export class ReimbTableComponent extends React.PureComponent<IReimbursementProps>{
     
@@ -18,16 +19,15 @@ export class ReimbTableComponent extends React.PureComponent<IReimbursementProps
     }
     
     render() {
-
-        const reimb = this.props.reimb.reimbursements && this.props.reimb.reimbursements;
+        const reimb = this.props.reimb && this.props.reimb;
         if(reimb){
         return (
             < >
                 <tr onClick={() => this.clicked}>
-                    <td className="table">{reimb.reimbursementId}</td>
-                    <td className="table">${reimb.amount}</td>
-                    <td className="table">{reimb.dateSubmitted}</td>
-                    <td className="table">{reimb.status}</td>
+                    <td className="table-center">{reimb.reimbursement_id}</td>
+                    <td className="table-center">${reimb.amount}</td>
+                    <td className="table-center">{reimb.date_submitted.slice(0,10)}</td>
+                    <td className="table-center">{reimb.status}</td>
                 </tr>
             </>
         )
@@ -42,11 +42,11 @@ export class ReimbTableComponent extends React.PureComponent<IReimbursementProps
 }
   const mapStateToProps = (state: IState) => {
     return {
-      reimb: state.reimburse,
+      reimbursement: state.reimburse,
     }
   }
   // const mapDispatchToProps = {
   //   clickUser: modifyUser
   // }
   
-  export default connect(mapStateToProps)(ReimbTableComponent);
+  export default withRouter(connect(mapStateToProps)(ReimbTableComponent));

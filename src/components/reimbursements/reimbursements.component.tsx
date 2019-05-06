@@ -2,10 +2,10 @@ import React from "react";
 import { Reimbursement } from "../../models/reimbursement";
 import { RouteComponentProps } from "react-router";
 import { IReimbursementState, IState } from "../../reducers";
-import { UserComponent } from "../users/users.component";
 import { connect } from "react-redux";
-import { ReimbTableComponent } from "./table.reimbursements.component";
-import { modifyReimb, getReimbById, getReimbByStatus, getReimbursements } from "../../actions/reimbursement.action";
+import  ReimbTableComponent  from "./table.reimbursements.component";
+import { modifyReimb, getReimbById, getReimbByStatus } from "../../actions/reimbursement.action";
+import { StatusComponent } from "./status.table.component";
 
 /**
  * This components shows all reimbursements and by status
@@ -18,7 +18,6 @@ interface IReimbState {
   //Take in Reimb state
   interface IReimbursementProps extends RouteComponentProps<{}>{
     reimb: IReimbursementState
-    getReimbursements: () => any
     getReimbById: (id: number) => any
     getReimbByStatus: (status: number) => any
     clickReimbursement: (editable: boolean, reimb: Reimbursement, history: any) => any
@@ -29,13 +28,13 @@ interface IReimbState {
       super(props);
       this.state = {
         id: 0,
-        status: 0
+        status: 1
       };
     }
   
     //send action to get all reimbursements
     componentDidMount = () => {
-      this.props.getReimbursements();
+      this.props.getReimbByStatus(this.state.status);
     };
     // set status
     setStatus = (event) => {
@@ -45,7 +44,7 @@ interface IReimbState {
     }
     // set user id
     setId = (event) => {
-        this.setStatus({
+        this.setId({
           id: event.target.value
         });
       }
@@ -69,18 +68,20 @@ interface IReimbState {
               <button type="submit" className="btn btn-success" onClick={() => this.props.getReimbById(id)} >Search</button>
               <button className="btn btn-success" onClick={() => this.props.clickReimbursement}>New Reimbursement</button>
             </div>
+            <StatusComponent status={this.state.status}/>
             <table className="table table-hover">
               <thead>
                 <tr>
-                  <th className="table" scope="col">Reimbursement Id</th>
-                  <th className="table" scope="col">Amount</th>
-                  <th className="table" scope="col">Date</th>
-                  <th className="table" scope="col">Status</th>
+                  <th className="table-center" scope="col">Reimbursement Id</th>
+                  <th className="table-center" scope="col">Amount</th>
+                  <th className="table-center" scope="col">Date</th>
+                  <th className="table-center" scope="col">Status</th>
                 </tr>
               </thead>
               <tbody>
-                  <ReimbTableComponent reimb={this.props.reimb} history={this.props.history}
-                  location={this.props.location} match={this.props.match}/>
+              {this.props.reimb.reimbursements && this.props.reimb.reimbursements.map(thisReimb => (
+                <ReimbTableComponent key={'user-' + thisReimb.reimbursementId} reimb={thisReimb} />
+                ))}
               </tbody>
             </table>
           </div>
@@ -99,7 +100,6 @@ interface IReimbState {
   const mapDispatchToProps = {
     getReimbById: getReimbById,
     getReimbByStatus: getReimbByStatus,
-    getReimbursements: getReimbursements,
     clickReimbursement: modifyReimb
   }
   

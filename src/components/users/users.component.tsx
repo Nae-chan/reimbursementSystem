@@ -1,10 +1,10 @@
 import React from "react";
-import { UserTableComponent } from "./table.user.component";
+import  UserTableComponent  from "./table.user.component";
 import { IModifyUserState, IState } from "../../reducers";
 import { connect } from "react-redux";
 import { getUserById, getUsers, modifyUser } from "../../actions/user.action";
 import { User } from "../../models/user";
-import { RouteComponentProps } from "react-router";
+import { RouteComponentProps, withRouter } from "react-router";
 
 /**
  * This components updates the state of a User displayed in the userCardComponent
@@ -62,17 +62,17 @@ export class UserComponent extends React.Component<IUserTableProps, IIdState> {
           <table className="table table-hover">
             <thead>
               <tr>
-                <th className="table" scope="col">UserId</th>
-                <th className="table" scope="col">Username</th>
-                <th className="table" scope="col">First Name</th>
-                <th className="table" scope="col">Last Name</th>
-                <th className="table" scope="col">Email</th>
-                <th className="table" scope="col">Role</th>
+                <th className="table-center" scope="col">UserId</th>
+                <th className="table-center" scope="col">Username</th>
+                <th className="table-center" scope="col">First Name</th>
+                <th className="table-center" scope="col">Last Name</th>
+                <th className="table-center" scope="col">Email</th>
+                <th className="table-center" scope="col">Role</th>
               </tr>
             </thead>
             <tbody>
               {this.props.selectedUser.listUsers && this.props.selectedUser.listUsers.map(currentUser => (
-                <UserTableComponent key={'user-' + currentUser.userId} listUsers={currentUser} />
+                <UserTableComponent key={'user-' + currentUser.userId} listUsers={currentUser}  />
               ))}
             </tbody>
           </table>
@@ -95,4 +95,4 @@ const mapDispatchToProps = {
   clickUser: modifyUser
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserComponent);
+export default withRouter (connect(mapStateToProps, mapDispatchToProps)(UserComponent));

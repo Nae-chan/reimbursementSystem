@@ -21,7 +21,7 @@
       "noImplicitAny": false,
       "noImplicitReturns": true,
       "noImplicitThis": true,
-      "strictNullChecks": true,
+      "strictNullChecks": false,
       "suppressImplicitAnyIndexErrors": true
     },
     "include": [

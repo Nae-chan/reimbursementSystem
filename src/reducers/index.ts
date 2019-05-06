@@ -20,7 +20,7 @@ export interface IModifyUserState {
 // This holds the state for current reimbursements
 export interface IReimbursementState{
   editable: boolean,
-  reimbursements?: Reimbursement,
+  reimbursements?: Reimbursement[],
   title: string
 } 
 //this connects states to props
